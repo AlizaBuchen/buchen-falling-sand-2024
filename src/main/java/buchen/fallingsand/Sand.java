@@ -5,15 +5,15 @@ public class Sand {
 
     public String toString ()
     {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder ();
 
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 builder.append(field[y][x]);
             }
-            builder.append("\n");
+            builder.append ("\n");
         }
-        return builder.toString();
+        return builder.toString ();
     }
 
     /**
@@ -32,14 +32,14 @@ public class Sand {
         field[y][x] = 1;
     }
 
-    public void fall() {
+    public void fall () {
         //moves all sand down one square
         //if sand at bottom level doesn't go down
         //if sand falls and sand below it cant go down
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 if (field [y][x] == 1 && y < 2 && field [y + 1][x] == 0) {
-                    put(x, y + 1);
+                    put (x, y + 1);
                     field [y][x] = 0;
                 }
             }
