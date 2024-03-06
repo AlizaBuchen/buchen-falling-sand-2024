@@ -36,19 +36,13 @@ public class Sand {
         //moves all sand down one square
         //if sand at bottom level doesn't go down
         //if sand falls and sand below it cant go down
-        boolean fell = false;
-        for (int y = 0; y < 3; y++) {
+        for (int y = 1; y >= 0; y--) {
             for (int x = 0; x < 3; x++) {
-                if (field [y][x] == 1 && y < 2 && field [y + 1][x] == 0) {
+                if (field [y][x] == 1 && field [y + 1][x] == 0) {
                     put(x, y + 1);
                     field [y][x] = 0;
-                    fell = true;
                 }
             }
-            if (fell) {
-                break;
-            }
         }
-
     }
 }
