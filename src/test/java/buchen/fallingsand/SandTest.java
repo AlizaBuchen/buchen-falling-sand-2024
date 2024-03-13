@@ -1,8 +1,10 @@
 package buchen.fallingsand;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Random;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 class SandTest {
 
@@ -10,7 +12,7 @@ class SandTest {
     public void string()
     {
         //given
-        Sand sand = new Sand();
+        Sand sand = new Sand(3,3);
         //when
         String actual = sand.toString();
         //then
@@ -20,7 +22,7 @@ class SandTest {
     @Test
     public void put() {
         //given
-        Sand sand = new Sand();
+        Sand sand = new Sand(3,3);
         //when
         sand.put(1, 0);
         //then
@@ -30,7 +32,7 @@ class SandTest {
     @Test
     public void fall() {
         //given
-        Sand sand = new Sand();
+        Sand sand = new Sand(3,3);
         sand.put(1, 0);
 
         //when
@@ -44,7 +46,7 @@ class SandTest {
     @Test
     public void fallOnGround() {
         //given
-        Sand sand = new Sand();
+        Sand sand = new Sand(3,3);
         sand.put(1, 2);
 
         //when
@@ -55,20 +57,75 @@ class SandTest {
 
     }
 
-
     @Test
-    public void fallOnOtherSand() {
+    public void fallToTheRight() {
         //given
-        Sand sand = new Sand();
+        Sand sand = new Sand(3, 3);
         sand.put(1, 1);
         sand.put(1, 2);
+        sand.put(0,2);
 
         //when
         sand.fall();
 
         //then
-        assertEquals("000\n010\n010\n", sand.toString());
-
+        assertEquals("000\n000\n111\n", sand.toString());
     }
 
+    @Test
+    public void fallToTheLeft() {
+        //given
+        Sand sand = new Sand(3, 3);
+        sand.put(1, 1);
+        sand.put(1, 2);
+        sand.put(2,2);
+
+        //when
+        sand.fall();
+
+        //then
+        assertEquals("000\n000\n111\n", sand.toString());
+    }
+    @Test
+    public void fullRandomDirectionRight() {
+        // given
+        Random random = mock();
+        doReturn(true).when(random).nextBoolean();
+        Sand sand = new Sand(3, 3, random);
+        sand.put(1, 1);
+        sand.put(1, 2);
+
+        // when
+        sand.fall();
+
+        // then
+        assertEquals("000\n000\n011\n", sand.toString());
+    }
+
+    @Test
+    public void fullRandomDirectionLeft() {
+        // given
+        Random random = mock();
+        doReturn(false).when(random).nextBoolean();
+        Sand sand = new Sand(3, 3, random);
+        sand.put(1, 1);
+        sand.put(1, 2);
+
+        // when
+        sand.fall();
+
+        // then
+        assertEquals("000\n000\n110\n", sand.toString());
+    }
+
+    @Test
+    public void fallSimultaneously() {
+        Sand sand = new Sand(3, 3);
+        sand.put(1, 0);
+        sand.put(1, 1);
+
+        sand.fall();
+
+        assertEquals("000\n010\n010\n", sand.toString());
+    }
 }
