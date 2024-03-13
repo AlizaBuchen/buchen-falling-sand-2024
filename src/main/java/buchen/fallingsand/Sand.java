@@ -72,7 +72,7 @@ public class Sand {
     }
 
     public void randomSand(int n) {
-        for (int x = 0; x < n; x++) {
+        for (int i = 0; i < n; i++) {
             put(random.nextInt(field[0].length), random.nextInt(field.length));
         }
     }
