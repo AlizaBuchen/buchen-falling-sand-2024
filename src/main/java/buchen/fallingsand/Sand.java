@@ -51,7 +51,7 @@ public class Sand {
                     if (field[y + 1][x] == 0) {
                         // does the sand fall straight down?
                         field[y][x] = 0;
-                        put(x, y+1);
+                        put(x, y + 1);
                         continue;
                     }
 
@@ -70,6 +70,7 @@ public class Sand {
             }
         }
     }
+
     public void randomSand(int n) {
         for (int x = 0; x < n; x++) {
             put(random.nextInt(field[0].length), random.nextInt(field.length));
