@@ -23,7 +23,7 @@ public class SandComponent extends JComponent {
             for (int x = 0; x < getWidth(); x++) {
                 if (sand.get(x, y) == 1) {
                     g.setColor(Color.BLACK);
-                    g.fillRect(x*2, y, 10, 10);
+                    g.fillRect(x * 2, y, 10, 10);
                 }
             }
         }
