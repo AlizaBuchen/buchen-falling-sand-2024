@@ -3,7 +3,6 @@ package buchen.fallingsand;
 import java.util.Random;
 public class Sand {
     private final int[][] field;
-
     private final Random random;
 
     public Sand(int width, int height) {
@@ -15,6 +14,15 @@ public class Sand {
         field = new int[height][width];
         this.random = random;
     }
+
+    public int getHeight(){
+        return field.length;
+    }
+
+    public int getWidth(){
+        return field[0].length;
+    }
+
     public String toString()
     {
         StringBuilder builder = new StringBuilder();

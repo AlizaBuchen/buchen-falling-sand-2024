@@ -16,18 +16,16 @@ public class SandComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        sand.fall();
+        repaint();
 
-
-
-        for (int y = 0; y < getHeight(); y++) {
-            for (int x = 0; x < getWidth(); x++) {
+        for (int y = 0; y < sand.getHeight(); y++) {
+            for (int x = 0; x < sand.getWidth(); x++) {
                 if (sand.get(x, y) == 1) {
-                    g.setColor(Color.BLACK);
-                    g.fillRect(x * 2, y, 10, 10);
+                    g.setColor(Color.PINK);
+                    g.fillRect(x * 2, y, 2, 2);
                 }
             }
         }
-        sand.fall();
-        repaint();
     }
 }
