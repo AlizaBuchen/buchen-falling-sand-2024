@@ -3,7 +3,6 @@ package buchen.fallingsand;
 import java.util.Random;
 public class Sand {
     private final int[][] field;
-
     private final Random random;
 
     public Sand(int width, int height) {
@@ -15,6 +14,15 @@ public class Sand {
         field = new int[height][width];
         this.random = random;
     }
+
+    public int getHeight() {
+        return field.length;
+    }
+
+    public int getWidth() {
+        return field[0].length;
+    }
+
     public String toString()
     {
         StringBuilder builder = new StringBuilder();
@@ -59,10 +67,12 @@ public class Sand {
                     int direction1 = rightFirst ? +1 : -1;
                     int direction2 = rightFirst ? -1 : +1;
 
-                    if (field[y + 1][x + direction1] == 0) {
+                    if (x + direction1 > -1 && x + direction1 < field[0].length
+                            && field[y + 1][x + direction1] == 0) {
                         field[y][x] = 0;
                         put(x + direction1, y + 1);
-                    } else if (field[y + 1][x + direction2] == 0) {
+                    } else if (x + direction2 > -1 && x + direction2 < field[0].length
+                            && field[y + 1][x + direction2] == 0) {
                         field[y][x] = 0;
                         put(x + direction2, y + 1);
                     }
