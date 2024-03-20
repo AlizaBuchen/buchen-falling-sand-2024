@@ -15,11 +15,11 @@ public class Sand {
         this.random = random;
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return field.length;
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return field[0].length;
     }
 
